@@ -1,6 +1,7 @@
+import { memo } from "react";
 import styles from "./Filter.module.css";
 
-export const Filter = ({ filter, onFilter }) => {
+const Filter = ({ filter, onFilter }) => {
   return (
     <div className={styles.filter}>
       <label className={styles.label}>
@@ -36,3 +37,5 @@ export const Filter = ({ filter, onFilter }) => {
     </div>
   );
 };
+
+export const FilterMemo = memo(Filter);
