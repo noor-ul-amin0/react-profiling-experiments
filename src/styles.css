@@ -1,0 +1,13 @@
+#root,
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Helvetica";
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  background: rgb(36, 38, 45);
+}
