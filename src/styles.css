@@ -9,5 +9,5 @@ body {
 #root {
   display: flex;
   justify-content: center;
-  background: rgb(36, 38, 45);
+  background: #f2f7ff;
 }
