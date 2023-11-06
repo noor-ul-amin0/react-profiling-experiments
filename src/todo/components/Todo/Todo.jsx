@@ -1,6 +1,7 @@
+import { memo } from "react";
 import styles from "./Todo.module.css";
 
-export const Todo = ({ todo, onChange }) => {
+const Todo = ({ todo, onChange }) => {
   return (
     <li className={styles.item}>
       <label className={styles.label}>
@@ -16,3 +17,5 @@ export const Todo = ({ todo, onChange }) => {
     </li>
   );
 };
+
+export const TodoMemo = memo(Todo);
