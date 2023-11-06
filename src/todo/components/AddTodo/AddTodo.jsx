@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import styles from "./AddTodo.module.css";
 
-export const AddTodo = ({ onSubmit }) => {
+const AddTodo = ({ onSubmit }) => {
   const [todo, setTodo] = useState("");
 
   const handleSubmit = (e) => {
@@ -26,3 +26,5 @@ export const AddTodo = ({ onSubmit }) => {
     </form>
   );
 };
+
+export const AddTodoMemo = memo(AddTodo);
