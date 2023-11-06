@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Todo, AddTodo, Filter } from "..";
+import { TodoMemo, AddTodoMemo, FilterMemo } from "..";
 import styles from "./TodoList.module.css";
 
 export const TodoList = () => {
@@ -25,18 +25,19 @@ export const TodoList = () => {
     setTodos(copyTodo);
   };
 
-  const handleAdd = (text) => {
+  const handleAdd = useCallback((text) => {
     if (!text) return;
-    const copyTodo = [
-      ...todos,
-      {
-        id: uuidv4(),
-        text,
-        isDone: false,
-      },
-    ];
-    setTodos(copyTodo);
-  };
+    setTodos((prevState) => {
+      return [
+        ...prevState,
+        {
+          id: uuidv4(),
+          text,
+          isDone: false,
+        },
+      ];
+    });
+  }, []);
 
   const filteredTodos = (() => {
     const filterState = {
@@ -53,18 +54,18 @@ export const TodoList = () => {
     <div className={styles.todoList}>
       <div className={styles.listBlock}>
         <div className={styles.top}>
-          <Filter filter={filter} onFilter={setFilter} />
+          <FilterMemo filter={filter} onFilter={setFilter} />
         </div>
         {filteredTodos.length ? (
           <ul className={styles.list}>
             {filteredTodos.map((todo) => (
-              <Todo key={todo.id} todo={todo} onChange={handleDone} />
+              <TodoMemo key={todo.id} todo={todo} onChange={handleDone} />
             ))}
           </ul>
         ) : (
           <div className={styles.noTodos}>No todos found :(</div>
         )}
-        <AddTodo onSubmit={handleAdd} />
+        <AddTodoMemo onSubmit={handleAdd} />
       </div>
     </div>
   );
